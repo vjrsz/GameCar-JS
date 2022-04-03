@@ -55,12 +55,13 @@ const scenePlay = {
 		scenePlay.time=0
 		scenePlay.timeMax=timeMax*1000
 		scenePlay.fps = 1000/fps
-		scenePlay.controlUpdate = setInterval(this.update, fps)
+		scenePlay.controlUpdate = setInterval(this.update, scenePlay.fps)
+		setInterval(()=>scenePlay.sky.draw(), scenePlay.fps)
 	},
 	update : function(){
 		move(settings.scenery.sizes)
 		scenePlay.car.draw()
-		scenePlay.sky.draw()
+		//scenePlay.sky.draw()
 		scenePlay.road.draw(settings.scenery.sizes, settings.scenery.colorReverse)
 		scenePlay.place.draw(settings.scenery.sizes, settings.scenery.colorReverse)
 		scenePlay.time+=scenePlay.fps
