@@ -48,7 +48,7 @@ class Car{
 				clearInterval(anim)
 			}
 		}, 1000/15)
-		img.src = 'assets/PixelSimulations/Explosion6/0001.png'
+		img.src = 'assets/PixelSimulations/Explosion4/0001.png'
 
 	}
 }	

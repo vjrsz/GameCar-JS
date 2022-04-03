@@ -16,7 +16,7 @@ const settings = {
 		w: SCREEN.w,
 		h: SCREEN.h * 0.6,
 		color: 'blue',
-		src: 'assets/cloud.jpg',
+		src: 'assets/sky.png',
 	},
 	lines : {
 		color: '#FFF',
