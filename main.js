@@ -40,7 +40,7 @@ const settings = {
 	}
 }
 const scenePlay = {
-	init : function(fps, time){
+	init : function(fps = 20, timeMax = 3){
 		scenePlay.sky = new Sky(settings.sky.x, settings.sky.y, settings.sky.w, settings.sky.h,  settings.sky.color, settings.sky.src);
 		scenePlay.road = new Scenery('#road', settings.scenery.x, settings.scenery.y, settings.scenery.w, settings.scenery.h, settings.road.color, settings.scenery.sizes)
 		scenePlay.place = new Scenery('#place', settings.scenery.x, settings.scenery.y, settings.scenery.w, settings.scenery.h, settings.place.color, settings.scenery.sizes)
@@ -53,7 +53,9 @@ const scenePlay = {
 		scenePlay.car.init()
 
 		scenePlay.time=0
-		scenePlay.controlUpdate = setInterval(this.update, 1000/fps)
+		scenePlay.timeMax=timeMax*1000
+		scenePlay.fps = 1000/fps
+		scenePlay.controlUpdate = setInterval(this.update, fps)
 	},
 	update : function(){
 		move(settings.scenery.sizes)
@@ -61,8 +63,8 @@ const scenePlay = {
 		scenePlay.sky.draw()
 		scenePlay.road.draw(settings.scenery.sizes, settings.scenery.colorReverse)
 		scenePlay.place.draw(settings.scenery.sizes, settings.scenery.colorReverse)
-		scenePlay.time+=(1000/20)
-		if(scenePlay.time >= 3*1000){
+		scenePlay.time+=scenePlay.fps
+		if(scenePlay.time >= scenePlay.timeMax){
 			scenePlay.finish()
 		}
 	},
@@ -104,8 +106,7 @@ function Rect(x=0, y=0, w=50, h=50, color='#000'){
 	return rect
 }
 
-scenePlay.init(20)
-scenePlay.update()
+scenePlay.init(20, 5)
 
 
 
