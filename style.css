@@ -1,0 +1,46 @@
+
+@charset "UTF-8";
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	image-rendering: pixelated;
+	overflow: hidden;
+	user-select: none;
+}
+html, body{
+	width: 100%;
+	height: 100%;
+}
+
+#sky img{
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+#road{
+	z-index: 2;
+	clip-path: polygon(48% 0%, 52% 0%, 110% 100%, -10% 100%);
+}
+#lines-road-r{
+	z-index: 3;
+	clip-path: polygon(48% 0%, 48.2% 0%, -5% 100%, -10% 100%);
+}
+#lines-road-l{
+	z-index: 3;
+	clip-path: polygon(52% 0%, 52.2% 0%, 110% 100%, 105% 100%);
+}
+#place{
+	z-index: 1;
+}
+#car{
+	z-index: 5;
+	overflow: visible !important;
+
+}
+#tree{
+	z-index: 5;
+	overflow: visible !important;
+}
