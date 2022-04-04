@@ -54,7 +54,8 @@
 	color: rgb(0,255,0);
 }
 #audio{
-	position: absolute;
-	z-index: 20;
+	display: hidden;
+	/*position: absolute;
+	z-index: 20;*/
 
 }
