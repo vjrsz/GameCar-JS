@@ -1,5 +1,6 @@
-
 @charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap');
 
 *{
 	padding: 0;
@@ -43,4 +44,16 @@ html, body{
 #tree{
 	z-index: 5;
 	overflow: visible !important;
+}
+#counter{
+	z-index: 20;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0,0,0,0.1);
+}
+#counter p{
+	font-family: 'Noto Sans', sans-serif;
+	font-size: 50px;
+	color: rgb(0,255,0);
 }

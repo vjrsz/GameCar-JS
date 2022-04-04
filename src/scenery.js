@@ -17,6 +17,7 @@ class Scenery{
 			this.lines.push( placeRect )
 			this.tag.appendChild(placeRect);
 		}
+		this.draw()
 	}
 	draw(sizes = [], colorReverse){
 		if(colorReverse){

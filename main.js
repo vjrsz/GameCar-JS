@@ -52,6 +52,12 @@ const scenePlay = {
 		scenePlay.line.init()
 		scenePlay.car.init()
 
+		scenePlay.counterDiv = document.getElementById('counter')
+		scenePlay.counterP = document.getElementById('counter-p')
+		styleGeral(scenePlay.counterDiv, SCREEN.w, SCREEN.h, 0, 0)
+
+		scenePlay.counterDiv.style.zIndex = '20'
+		scenePlay.count = 0.0
 		scenePlay.time=0
 		scenePlay.timeMax=timeMax*1000
 		scenePlay.fps = 1000/fps
@@ -68,9 +74,12 @@ const scenePlay = {
 		if(scenePlay.time >= scenePlay.timeMax){
 			scenePlay.finish()
 		}
+		scenePlay.count += scenePlay.fps
+		scenePlay.counterP.innerHTML = ('000'+Math.trunc(scenePlay.count/1000)).slice(-3).replace(/(\d{1})(\d{2})/,"$1.$2") + 'x'
 	},
 	finish : function(){
 		clearInterval(scenePlay.controlUpdate)
+		scenePlay.counterP.style.color = "rgb(255,0,0)"
 		scenePlay.car.finish()
 	}
 }
@@ -98,7 +107,7 @@ function styleGeral(tag, w, h, x, y) {
 	tag.style.height = h + 'px'
 	tag.style.overflow = "hidden"
 }
-function Rect(x=0, y=0, w=50, h=50, color='#000'){
+function Rect(x=0, y=0, w=50, h=50, color='none'){
 	let rect = document.createElement('div')
 	rect.style.display = 'block'
 	rect.style.width = w + 'px'
@@ -106,8 +115,11 @@ function Rect(x=0, y=0, w=50, h=50, color='#000'){
 	rect.style.background = color
 	return rect
 }
+max = 30
+min = 0
+time = Math.random() * (max - min) + min
 
-scenePlay.init(20, 5)
+scenePlay.init(20, time)
 
 
 

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P"/>-->
   <link rel="stylesheet" type="text/css" href="style.css">
   <title></title>
 </head>
-<body
-  draggable="false" ondragstart="return false" ondrop="return false">
-  <div id="scene-play" style="width: 720px;height: 480px;">
+<body>
+  <div id="scene-play" style="width: 720px;height: 480px;"
+   draggable="false" ondragstart="return false" ondrop="return false">
     <div id="sky"></div>
     <div id="place">
     </div>
     <div id="road">
     </div>
-    <div id="tree"></div>
     <div id="car"></div>
+    <div id="counter">
+      <p id="counter-p"></p>
+    </div>
+    <div id="lines-road-r"></div>
+    <div id="lines-road-l"></div>
   </div>
   <script src="src/car.js"></script> 
   <script src="src/lines.js"></script> 

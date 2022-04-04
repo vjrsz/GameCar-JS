@@ -13,10 +13,8 @@ class Lines{
 	}
 	drawLinesBorder(){
 		for(let i = 0; i <= this.lines.length-1; i++){
-			let line = document.createElement('div')
-			document.body.insertBefore(line, document.getElementById('#car'));
+			let line = document.getElementById(this.lines[i])
 			styleGeral(line, this.w, this.h, this.x, this.y)
-			line.id = this.lines[i]
 			line.style.background = this.colors
 		}
 	}
