@@ -74,13 +74,14 @@ const scenePlay = {
 		})
 		
 		scenePlay.counterDiv.style.zIndex = '20'
-		scenePlay.count = 0.0
+		scenePlay.count = 1
 		scenePlay.time=0
 		scenePlay.timeMax=timeMax*1000
 		scenePlay.fps = 1000/fps
-		scenePlay.countC = true
 		setTimeout(()=>{
 		scenePlay.controlUpdate = setInterval(this.update, scenePlay.fps)
+		scenePlay.controlCounter = setInterval(this.counter, 100)
+
 		setInterval(()=>scenePlay.sky.draw(), scenePlay.fps)
 		}, 2000)
 	},
@@ -94,13 +95,14 @@ const scenePlay = {
 		if(scenePlay.time >= scenePlay.timeMax){
 			scenePlay.finish()
 		}
-		if(scenePlay.countC){
-			scenePlay.count += scenePlay.fps
-			scenePlay.counterP.innerHTML = ('000'+Math.trunc(scenePlay.count/1000)).slice(-3).replace(/(\d{1})(\d{2})/,"$1.$2") + 'x'
-		}
+	},
+	counter : function(){
+		scenePlay.count += 0.01
+		scenePlay.counterP.innerHTML = scenePlay.count.toFixed(2) + 'x'	
 	},
 	finish : function(){
 		clearInterval(scenePlay.controlUpdate)
+		stopCounter()
 		scenePlay.counterP.style.color = "rgb(255,0,0)"
 		document.getElementById("audio-main").src = 'assets/sounds/explosion1.mp3'
 		document.getElementById("audio-main").loop = false
@@ -140,8 +142,7 @@ function Rect(x=0, y=0, w=50, h=50, color='none'){
 	return rect
 }
 function stopCounter(){
-	scenePlay.countC = false
-
+	clearInterval(scenePlay.controlCounter)
 }
 max = 30
 min = 0
