@@ -43,12 +43,12 @@ class Car{
 		let i = 0
 		let anim = setInterval(()=>{
 			i += 1
-			img.src = 'assets/PixelSimulations/Explosion4/00'+(('00'+i).slice(-2))+'.png'
+			img.src = 'assets/Explosion/Explosion4/00'+(('00'+i).slice(-2))+'.png'
 			if(i > 24){
 				clearInterval(anim)
 			}
 		}, 1000/15)
-		img.src = 'assets/PixelSimulations/Explosion4/0001.png'
+		img.src = 'assets/Explosion/Explosion4/0001.png'
 
 	}
 }	

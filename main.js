@@ -55,14 +55,34 @@ const scenePlay = {
 		scenePlay.counterDiv = document.getElementById('counter')
 		scenePlay.counterP = document.getElementById('counter-p')
 		styleGeral(scenePlay.counterDiv, SCREEN.w, SCREEN.h, 0, 0)
+		scenePlay.audio = document.getElementById('audio')
+		scenePlay.audio.style.top = SCREEN.h * 0.05 + 'px'
+		scenePlay.audio.style.left = SCREEN.w * 0.9 + 'px'
 
+
+		scenePlay.audio.addEventListener("click", ()=>{
+			if(document.getElementById("audio-main").muted){
+				document.getElementById("audio-img").src = 'assets/audio-play.svg'
+				document.getElementById("audio-main").muted = false
+				document.getElementById("audio-main").play()
+			}
+			else{
+				document.getElementById("audio-main").muted = true
+				document.getElementById("audio-img").src = 'assets/audio-muted.svg'
+				document.getElementById("audio-main").pause()
+			}
+		})
+		
 		scenePlay.counterDiv.style.zIndex = '20'
 		scenePlay.count = 0.0
 		scenePlay.time=0
 		scenePlay.timeMax=timeMax*1000
 		scenePlay.fps = 1000/fps
+
+		setTimeout(()=>{
 		scenePlay.controlUpdate = setInterval(this.update, scenePlay.fps)
 		setInterval(()=>scenePlay.sky.draw(), scenePlay.fps)
+		}, 2000)
 	},
 	update : function(){
 		move(settings.scenery.sizes)
@@ -80,6 +100,10 @@ const scenePlay = {
 	finish : function(){
 		clearInterval(scenePlay.controlUpdate)
 		scenePlay.counterP.style.color = "rgb(255,0,0)"
+		document.getElementById("audio-main").muted = true
+		document.getElementById("audio-main").pause()
+		document.getElementById("audio-explosion").muted = false
+		document.getElementById("audio-explosion").play()
 		scenePlay.car.finish()
 	}
 }
@@ -114,6 +138,9 @@ function Rect(x=0, y=0, w=50, h=50, color='none'){
 	rect.style.height = h + 'px'
 	rect.style.background = color
 	return rect
+}
+function stopCounter(){
+	scenePlay.fps = 0
 }
 max = 30
 min = 0
