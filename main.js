@@ -100,10 +100,8 @@ const scenePlay = {
 	finish : function(){
 		clearInterval(scenePlay.controlUpdate)
 		scenePlay.counterP.style.color = "rgb(255,0,0)"
-		document.getElementById("audio-main").muted = true
-		document.getElementById("audio-main").pause()
-		document.getElementById("audio-explosion").muted = false
-		document.getElementById("audio-explosion").play()
+		document.getElementById("audio-main").src = 'assets/sounds/explosion1.mp3'
+		document.getElementById("audio-main").loop = false
 		scenePlay.car.finish()
 	}
 }
