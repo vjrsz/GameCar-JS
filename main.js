@@ -78,7 +78,7 @@ const scenePlay = {
 		scenePlay.time=0
 		scenePlay.timeMax=timeMax*1000
 		scenePlay.fps = 1000/fps
-
+		scenePlay.countC = true
 		setTimeout(()=>{
 		scenePlay.controlUpdate = setInterval(this.update, scenePlay.fps)
 		setInterval(()=>scenePlay.sky.draw(), scenePlay.fps)
@@ -94,8 +94,10 @@ const scenePlay = {
 		if(scenePlay.time >= scenePlay.timeMax){
 			scenePlay.finish()
 		}
-		scenePlay.count += scenePlay.fps
-		scenePlay.counterP.innerHTML = ('000'+Math.trunc(scenePlay.count/1000)).slice(-3).replace(/(\d{1})(\d{2})/,"$1.$2") + 'x'
+		if(scenePlay.countC){
+			scenePlay.count += scenePlay.fps
+			scenePlay.counterP.innerHTML = ('000'+Math.trunc(scenePlay.count/1000)).slice(-3).replace(/(\d{1})(\d{2})/,"$1.$2") + 'x'
+		}
 	},
 	finish : function(){
 		clearInterval(scenePlay.controlUpdate)
@@ -138,7 +140,8 @@ function Rect(x=0, y=0, w=50, h=50, color='none'){
 	return rect
 }
 function stopCounter(){
-	scenePlay.fps = 0
+	scenePlay.countC = false
+
 }
 max = 30
 min = 0
