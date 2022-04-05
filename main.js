@@ -166,7 +166,6 @@ time = Math.random() * (max - min) + min
 max = 1
 min = 10
 cenary = Math.trunc(Math.random() * (max - min) + min)
-cenary = 9
 settings.sky.src = 'assets/sky/sky'+cenary+'.png'
 settings.place.color = banco_cores.place[cenary-1]
 
