@@ -1,4 +1,18 @@
 const SCREEN = { w: 780, h: 480 , r: window.innerWidth/window.innerHeight }
+const banco_cores = {
+	place : [
+		["#eedccd", "#e6d4c5"],
+		["#078b0c", "#14a912"],
+		["#674839", "#be9b85"],
+		["#eec277", "#ffdfa4"],
+		["#a1a08c", "#b5b4a0"],
+		["#208f6e", "#41af71"],
+		["#6eb9e0", "#3e8ec1"],
+		["#dd4a5f", "#b3313b"],
+		["#f9d63b", "#d7ae25"],
+		["#f9f3de", "#eae3cb"]
+	],
+}
 const settings = {
 	scenery : {
 		x: 0,
@@ -16,7 +30,7 @@ const settings = {
 		w: SCREEN.w,
 		h: SCREEN.h * 0.6,
 		color: 'blue',
-		src: 'assets/sky.png',
+		src: 'assets/sky/sky01.png',
 	},
 	lines : {
 		color: '#FFF',
@@ -147,6 +161,14 @@ function stopCounter(){
 max = 30
 min = 0
 time = Math.random() * (max - min) + min
+
+
+max = 1
+min = 10
+cenary = Math.trunc(Math.random() * (max - min) + min)
+cenary = 9
+settings.sky.src = 'assets/sky/sky'+cenary+'.png'
+settings.place.color = banco_cores.place[cenary-1]
 
 scenePlay.init(20, time)
 
