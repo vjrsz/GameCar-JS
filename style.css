@@ -53,9 +53,31 @@
 	font-size: 50px;
 	color: rgb(0,255,0);
 }
-#audio{
-	display: hidden;
-	/*position: absolute;
-	z-index: 20;*/
-
+#play{
+	position: absolute;
+	z-index: 20;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0,0,0,0.5);	
 }
+#play svg{
+	border: #fff solid; 
+	border-radius: 50%;	
+}
+#closeA{
+	outline: none;
+	padding: 15px;
+	background: rgb(0,200,0);
+	border:  none;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 20px;
+	font-family: 'Noto Sans', sans-serif;
+	text-transform: uppercase;
+}
+#closeA:hover{
+	background: rgb(0,255,0);
+}
+
+

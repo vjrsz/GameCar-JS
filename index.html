@@ -18,12 +18,15 @@
     </div>
     <div id="lines-road-r"></div>
     <div id="lines-road-l"></div>
-    <div id="audio">
-      <img id="audio-img" src="assets/audio-muted.svg">
-      <audio id="audio-main" src="assets/sounds/game.wav" type="audio/wav" autoplay loop></audio>
+    <div id="play" onclick="play()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-right" width="50" height="50" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M18 15l-6 -6l-6 6h12" fill="#fff" transform="rotate(90 12 12)" />
+      </svg>
     </div>
+    <audio id="audio-main" src="assets/sounds/game.wav" type="audio/wav" loop></audio>
   </div>
-  <button onclick="stopCounter()">Fechar Aposta</button>
+  <button id="closeA" onclick="stopCounter()">Fechar Aposta</button>
   <script src="src/car.js"></script> 
   <script src="src/lines.js"></script> 
   <script src="src/scenery.js"></script> 

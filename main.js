@@ -54,7 +54,7 @@ const settings = {
 	}
 }
 const scenePlay = {
-	init : function(fps = 20, timeMax = 3){
+	init : function(){
 		scenePlay.sky = new Sky(settings.sky.x, settings.sky.y, settings.sky.w, settings.sky.h,  settings.sky.color, settings.sky.src);
 		scenePlay.road = new Scenery('#road', settings.scenery.x, settings.scenery.y, settings.scenery.w, settings.scenery.h, settings.road.color, settings.scenery.sizes)
 		scenePlay.place = new Scenery('#place', settings.scenery.x, settings.scenery.y, settings.scenery.w, settings.scenery.h, settings.place.color, settings.scenery.sizes)
@@ -69,12 +69,17 @@ const scenePlay = {
 		scenePlay.counterDiv = document.getElementById('counter')
 		scenePlay.counterP = document.getElementById('counter-p')
 		styleGeral(scenePlay.counterDiv, SCREEN.w, SCREEN.h, 0, 0)
+		scenePlay.counterDiv.style.zIndex = '20'
+
+		styleGeral(document.getElementById('play'), SCREEN.w, SCREEN.h, 0, 0)
+		
+		/*
 		scenePlay.audio = document.getElementById('audio')
 		scenePlay.audio.style.top = SCREEN.h * 0.05 + 'px'
 		scenePlay.audio.style.left = SCREEN.w * 0.9 + 'px'
 
 
-		scenePlay.audio.addEventListener("click", ()=>{
+		/*scenePlay.audio.addEventListener("click", ()=>{
 			if(document.getElementById("audio-main").muted){
 				document.getElementById("audio-img").src = 'assets/audio-play.svg'
 				document.getElementById("audio-main").muted = false
@@ -85,9 +90,11 @@ const scenePlay = {
 				document.getElementById("audio-img").src = 'assets/audio-muted.svg'
 				document.getElementById("audio-main").pause()
 			}
-		})
+		})*/
 		
-		scenePlay.counterDiv.style.zIndex = '20'
+		
+	},
+	play: function(fps = 20, timeMax = 3){
 		scenePlay.count = 1
 		scenePlay.time=0
 		scenePlay.timeMax=timeMax*1000
@@ -120,6 +127,7 @@ const scenePlay = {
 		scenePlay.counterP.style.color = "rgb(255,0,0)"
 		document.getElementById("audio-main").src = 'assets/sounds/explosion1.mp3'
 		document.getElementById("audio-main").loop = false
+		document.getElementById("audio-main").play()
 		scenePlay.car.finish()
 	}
 }
@@ -158,18 +166,23 @@ function Rect(x=0, y=0, w=50, h=50, color='none'){
 function stopCounter(){
 	clearInterval(scenePlay.controlCounter)
 }
+
 max = 30
 min = 0
 time = Math.random() * (max - min) + min
 
-
 max = 1
 min = 10
 cenary = Math.trunc(Math.random() * (max - min) + min)
+
 settings.sky.src = 'assets/sky/sky'+cenary+'.png'
 settings.place.color = banco_cores.place[cenary-1]
 
-scenePlay.init(20, time)
+scenePlay.init()
 
-
-
+function play(){
+	document.getElementById('play').style.display = 'none'
+	document.getElementById("audio-main").muted = false
+	document.getElementById("audio-main").play()
+	scenePlay.play(20, time)
+}
