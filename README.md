@@ -1,11 +1,11 @@
 <div align="center">
-    <img width="100px" src="./photo.svg">
+    <img width="100px" src="./screenshots.png">
 </div>
 
 <h1 align="center">Game Car JS</h1>
 <div align="center">
     <h3>
-        <a href="https://junior2105.github.io/QRCode-FRONTEND/" target="_blank">Live</a>
+        <a href="https://vjrsz.github.io/GameCar-JS/" target="_blank">Live</a>
     </h3>
 </div>
 <h2>Built With</h2>
@@ -17,10 +17,6 @@
  CSS3</p>
 <p><img height="25" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
 JS</p>
-
-
-<h2>About</h2>
-<p></p>
 
 <h2 align="center">by Valter Junior</h2>
 <p align="center">

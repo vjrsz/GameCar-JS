@@ -1,6 +1,6 @@
 class Car{
-	constructor(x, y, w, h, src){
-		this.tag = document.querySelector('#car')
+	constructor(tag, x, y, w, h, src){
+		this.tag = tag
 		this.x = x
 		this.y = y
 		this.w = w

@@ -5,25 +5,8 @@
   <title></title>
 </head>
 <body>
-  <div id="scene-play" style="width: 720px;height: 480px;"
+  <div id="game" 
    draggable="false" ondragstart="return false" ondrop="return false">
-    <div id="sky"></div>
-    <div id="place">
-    </div>
-    <div id="road">
-    </div>
-    <div id="car"></div>
-    <div id="counter">
-      <p id="counter-p"></p>
-    </div>
-    <div id="lines-road-r"></div>
-    <div id="lines-road-l"></div>
-    <div id="play" onclick="play()">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-right" width="50" height="50" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-        <path d="M18 15l-6 -6l-6 6h12" fill="#fff" transform="rotate(90 12 12)" />
-      </svg>
-    </div>
     <audio id="audio-main" src="assets/sounds/game.wav" type="audio/wav" loop></audio>
   </div>
   <button id="closeA" onclick="stopCounter()">Fechar Aposta</button>
@@ -32,5 +15,7 @@
   <script src="src/scenery.js"></script> 
   <script src="src/sky.js"></script> 
   <script src="main.js"></script>
+
+  <div class="coded">Coded by <a href="https://github.com/vjrsz">Valter Jr</a>.</div>
 </body>
 </html>

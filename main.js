@@ -1,4 +1,4 @@
-const SCREEN = { w: 780, h: 480 , r: window.innerWidth/window.innerHeight }
+const SCREEN = { w: 720, h: 480 , r: window.innerWidth/window.innerHeight }
 const banco_cores = {
 	place : [
 		["#eedccd", "#e6d4c5"],
@@ -16,8 +16,8 @@ const banco_cores = {
 const settings = {
 	scenery : {
 		x: 0,
-		y: SCREEN.h * 0.6,
-		w: SCREEN.w ,
+		y: 0,
+		w: SCREEN.w,
 		h: SCREEN.h * 0.4,
 		sizes : [
 			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50
@@ -29,7 +29,6 @@ const settings = {
 		y: 0,
 		w: SCREEN.w,
 		h: SCREEN.h * 0.6,
-		color: 'blue',
 		src: 'assets/sky/sky01.png',
 	},
 	lines : {
@@ -48,50 +47,67 @@ const settings = {
 			return (SCREEN.w - this.w)/2
 		},
 		getY : function(){
-			return SCREEN.h - this.h - 20
+			return (SCREEN.h - this.h - 20)*-2
 		},
 		src : 'assets/hero.png'
 	}
 }
 const scenePlay = {
 	init : function(){
-		scenePlay.sky = new Sky(settings.sky.x, settings.sky.y, settings.sky.w, settings.sky.h,  settings.sky.color, settings.sky.src);
-		scenePlay.road = new Scenery('#road', settings.scenery.x, settings.scenery.y, settings.scenery.w, settings.scenery.h, settings.road.color, settings.scenery.sizes)
-		scenePlay.place = new Scenery('#place', settings.scenery.x, settings.scenery.y, settings.scenery.w, settings.scenery.h, settings.place.color, settings.scenery.sizes)
-		scenePlay.line = new Lines(settings.scenery.x, settings.scenery.y, settings.scenery.w, settings.scenery.h, settings.lines.color)
-		scenePlay.car = new Car(settings.car.getX(), settings.car.getY(), settings.car.w, settings.car.h, settings.car.src)
-		scenePlay.road.init()
-		scenePlay.place.init()
+		const game = document.getElementById("game")
+			styleGeral(game, SCREEN.w, SCREEN.h)
+
+		const sky = document.createElement("div")
+		sky.id = "sky"
+		scenePlay.sky = new Sky(sky, settings.sky.x, settings.sky.y, settings.sky.w, settings.sky.h, settings.sky.src);
 		scenePlay.sky.init()
+		
+		const road = document.createElement("div")
+		road.id = "road"
+		scenePlay.road = new Scenery(road, settings.scenery.x, settings.scenery.y, settings.scenery.w, settings.scenery.h, settings.road.color, settings.scenery.sizes)
+		scenePlay.road.init()
+
+		const place = document.createElement("div")
+		place.id = "place"
+		scenePlay.place = new Scenery(place, settings.scenery.x, settings.scenery.y-settings.scenery.h, settings.scenery.w, settings.scenery.h, settings.place.color, settings.scenery.sizes)
+		scenePlay.place.init()
+
+		const line = document.createElement("div")
+		line.id = "line"
+		scenePlay.line = new Lines(line, settings.scenery.x, settings.scenery.y-settings.scenery.h*2, settings.scenery.w, settings.scenery.h, settings.lines.color)
 		scenePlay.line.init()
+
+		const car = document.createElement("div")
+		car.id = "car"
+		scenePlay.car = new Car(car, settings.car.getX(), settings.car.getY(), settings.car.w, settings.car.h, settings.car.src)
 		scenePlay.car.init()
 
-		scenePlay.counterDiv = document.getElementById('counter')
-		scenePlay.counterP = document.getElementById('counter-p')
-		styleGeral(scenePlay.counterDiv, SCREEN.w, SCREEN.h, 0, 0)
+		const playDiv = document.createElement("div")
+		playDiv.id = "play"
+		playDiv.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-right" width="50" height="50" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M18 15l-6 -6l-6 6h12" fill="#fff" transform="rotate(90 12 12)" />
+      	</svg>`
+      	playDiv.addEventListener("click", play)
+		styleGeral(playDiv, SCREEN.w, SCREEN.h, 0, SCREEN.h*-3.4)
+
+		scenePlay.counterDiv = document.createElement("div")
+		scenePlay.counterP = document.createElement("p")
+		scenePlay.counterDiv.id = "counter"
+		scenePlay.counterP.id = "counter-p"
+
+		game.appendChild(sky)		
+		game.appendChild(road)		
+		game.appendChild(place)	
+		game.appendChild(line)	
+		game.appendChild(car)
+		game.appendChild(scenePlay.counterDiv)
+		game.appendChild(playDiv)
+		scenePlay.counterDiv.appendChild(scenePlay.counterP)
+
+		styleGeral(scenePlay.counterDiv, SCREEN.w, SCREEN.h, 0, SCREEN.h*-2.4)
 		scenePlay.counterDiv.style.zIndex = '20'
 
-		styleGeral(document.getElementById('play'), SCREEN.w, SCREEN.h, 0, 0)
-		
-		/*
-		scenePlay.audio = document.getElementById('audio')
-		scenePlay.audio.style.top = SCREEN.h * 0.05 + 'px'
-		scenePlay.audio.style.left = SCREEN.w * 0.9 + 'px'
-
-
-		/*scenePlay.audio.addEventListener("click", ()=>{
-			if(document.getElementById("audio-main").muted){
-				document.getElementById("audio-img").src = 'assets/audio-play.svg'
-				document.getElementById("audio-main").muted = false
-				document.getElementById("audio-main").play()
-			}
-			else{
-				document.getElementById("audio-main").muted = true
-				document.getElementById("audio-img").src = 'assets/audio-muted.svg'
-				document.getElementById("audio-main").pause()
-			}
-		})*/
-		
 		
 	},
 	play: function(fps = 20, timeMax = 3){
@@ -102,6 +118,7 @@ const scenePlay = {
 		setTimeout(()=>{
 		scenePlay.controlUpdate = setInterval(this.update, scenePlay.fps)
 		scenePlay.controlCounter = setInterval(this.counter, 100)
+		console.log('oi')
 
 		setInterval(()=>scenePlay.sky.draw(), scenePlay.fps)
 		}, 2000)
@@ -109,7 +126,6 @@ const scenePlay = {
 	update : function(){
 		move(settings.scenery.sizes)
 		scenePlay.car.draw()
-		//scenePlay.sky.draw()
 		scenePlay.road.draw(settings.scenery.sizes, settings.scenery.colorReverse)
 		scenePlay.place.draw(settings.scenery.sizes, settings.scenery.colorReverse)
 		scenePlay.time+=scenePlay.fps
@@ -145,15 +161,11 @@ function move(sizes = []){
 		settings.scenery.colorReverse = true
 	}
 }
-function styleGeral(tag, w, h, x, y) {
-	tag.style.position = 'absolute'
-	tag.style.top = y + 'px'
-	tag.style.left = x + 'px'
-	tag.style.display = 'flex'
-	tag.style.flexDirection = 'column'
-	tag.style.width = w + 'px'
-	tag.style.height = h + 'px'
-	tag.style.overflow = "hidden"
+function styleGeral(tag, w, h, x='none', y='none') {
+	y == 'none' ? 'continue' : tag.style.top = y + 'px' 
+	x == 'none' ? 'continue' : tag.style.left = x + 'px'
+	w == 'none' ? 'continue' : tag.style.width = w + 'px'
+	h == 'none' ? 'continue' : tag.style.height = h + 'px'
 }
 function Rect(x=0, y=0, w=50, h=50, color='none'){
 	let rect = document.createElement('div')
@@ -165,6 +177,13 @@ function Rect(x=0, y=0, w=50, h=50, color='none'){
 }
 function stopCounter(){
 	clearInterval(scenePlay.controlCounter)
+}
+
+function play(){
+	document.getElementById('play').style.display = 'none'
+	document.getElementById("audio-main").muted = false
+	document.getElementById("audio-main").play()
+	scenePlay.play(20, time)
 }
 
 max = 30
@@ -179,10 +198,3 @@ settings.sky.src = 'assets/sky/sky'+cenary+'.png'
 settings.place.color = banco_cores.place[cenary-1]
 
 scenePlay.init()
-
-function play(){
-	document.getElementById('play').style.display = 'none'
-	document.getElementById("audio-main").muted = false
-	document.getElementById("audio-main").play()
-	scenePlay.play(20, time)
-}

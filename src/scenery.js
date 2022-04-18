@@ -1,6 +1,6 @@
 class Scenery{
 	constructor(tag, x, y, w, h, colors, sizes = []){
-		this.tag = document.querySelector(tag)
+		this.tag = tag
 		this.x = x
 		this.y = y
 		this.w = w
@@ -13,7 +13,7 @@ class Scenery{
 		styleGeral(this.tag, this.w, this.h, this.x, this.y)
 		for(let i = 0; i < this.sizes.length; i++){
 			let colorActual = (i%2==0) ? this.colors[0] : this.colors[1]
-			let placeRect = Rect(this.x, this.y, this.w, this.sizes[i]*this.h, colorActual);
+			let placeRect = Rect(this.x, this.y, this.w, this.sizes[i]*this.h/100, colorActual);
 			this.lines.push( placeRect )
 			this.tag.appendChild(placeRect);
 		}
@@ -25,7 +25,7 @@ class Scenery{
 		}
 		for(let i = 0; i < this.sizes.length; i++){
 			let colorActual = (i%2==0) ? this.colors[0] : this.colors[1]
-			this.lines[i].style.height = (this.sizes[i]*this.h) + 'px';
+			this.lines[i].style.height = (this.sizes[i]*this.h/100) + 'px';
 			this.lines[i].style.background = colorActual
 		}
 	}
