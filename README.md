@@ -25,7 +25,7 @@ JS</p>
 <h2 align="center">by Valter Junior</h2>
 <p align="center">
 <a href="https://www.instagram.com/vjrx._/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/></a>
-<a href="https://vjrsz.github.io/vjrsz">
+<a href="https://github.com/vjrsz/vjrsz">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </a>
 <a href="#">
